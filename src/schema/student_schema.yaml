@@ -1,0 +1,15 @@
+dataset:
+  name: student_performance
+
+target_column: math_score
+
+numerical_features:
+  - reading_score
+  - writing_score
+
+categorical_features:
+  - gender
+  - race_ethnicity
+  - parental_level_of_education
+  - lunch
+  - test_preparation_course

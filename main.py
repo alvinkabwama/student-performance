@@ -1,0 +1,9 @@
+import os
+from src.components.data_ingestion import DataIngestion
+from src.config_entity.data_ingestion_config import DataIngestionConfig
+from src.config_entity.data_transformation_config import DataTransformationConfig
+
+ingestion_config = DataIngestionConfig()
+data_ingestion = DataIngestion(data_ingestion_config=ingestion_config)
+data_transformation_config = data_ingestion.initiate_data_ingestion()
+print(data_transformation_config)
