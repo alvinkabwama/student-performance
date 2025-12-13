@@ -1,1 +1,4 @@
 student-env/
+student_performance.egg-info/
+__pycache__/
+*.pyc
