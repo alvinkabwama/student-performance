@@ -1,0 +1,12 @@
+[2025-12-13 19:21:10,221] - 30 - src.components.data_ingestion - INFO - Entered the data ingestion method or component
+[2025-12-13 19:21:10,233] - 33 - src.components.data_ingestion - INFO - Read the dataset as dataframe
+[2025-12-13 19:21:10,240] - 39 - src.components.data_ingestion - INFO - Train test split initiated
+[2025-12-13 19:21:10,255] - 46 - src.components.data_ingestion - INFO - Ingestion of the data iss completed
+[2025-12-13 19:21:10,294] - 84 - src.components.data_transformation - INFO - Read train and test data completed
+[2025-12-13 19:21:10,294] - 86 - src.components.data_transformation - INFO - Obtaining preprocessing object
+[2025-12-13 19:21:10,294] - 60 - src.components.data_transformation - INFO - Categorical columns: ['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course']
+[2025-12-13 19:21:10,295] - 61 - src.components.data_transformation - INFO - Numerical columns: ['writing_score', 'reading_score']
+[2025-12-13 19:21:10,300] - 99 - src.components.data_transformation - INFO - Applying preprocessing object on training dataframe and testing dataframe.
+[2025-12-13 19:21:10,325] - 111 - src.components.data_transformation - INFO - Saved preprocessing object.
+[2025-12-13 19:21:10,329] - 34 - src.components.model_trainer - INFO - Split training and test input data
+[2025-12-13 19:22:20,199] - 103 - src.components.model_trainer - INFO - Best found model on both training and testing dataset

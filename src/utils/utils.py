@@ -21,36 +21,46 @@ def save_object(file_path, obj):
     except Exception as e:
         raise CustomException(e, sys)
     
-def evaluate_models(X_train, y_train,X_test,y_test,models,param):
+def evaluate_models(X_train, y_train, X_test, y_test, models, param):
     try:
         report = {}
 
+        total_models = len(models)
+        print(f"Starting model evaluation for {total_models} models\n")
+
         for i in range(len(list(models))):
+            model_name = list(models.keys())[i]
             model = list(models.values())[i]
-            para=param[list(models.keys())[i]]
+            para = param[model_name]
 
-            gs = GridSearchCV(model,para,cv=3)
-            gs.fit(X_train,y_train)
+            print(f"[{i+1}/{total_models}] Training model: {model_name}")
 
-            model.set_params(**gs.best_params_)
-            model.fit(X_train,y_train)
+            try:
+                print(f"  -> Running GridSearchCV for {model_name}")
+                gs = GridSearchCV(model, para, cv=3)
+                gs.fit(X_train, y_train)
 
-            #model.fit(X_train, y_train)  # Train model
+                print(f"  -> Best params found: {gs.best_params_}")
+                model.set_params(**gs.best_params_)
+                model.fit(X_train, y_train)
 
-            y_train_pred = model.predict(X_train)
+            except Exception as e:
+                print(f"  -> GridSearch failed for {model_name}, training with default params")
+                model.fit(X_train, y_train)
 
             y_test_pred = model.predict(X_test)
-
-            train_model_score = r2_score(y_train, y_train_pred)
-
             test_model_score = r2_score(y_test, y_test_pred)
 
-            report[list(models.keys())[i]] = test_model_score
+            print(f"  -> {model_name} test R2 score: {test_model_score:.4f}\n")
 
+            report[model_name] = test_model_score
+
+        print("Model evaluation completed\n")
         return report
 
     except Exception as e:
         raise CustomException(e, sys)
+
     
 def load_object(file_path):
     try:
